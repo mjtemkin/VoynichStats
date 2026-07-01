@@ -4,3 +4,4 @@ __pycache__/
 *.json
 figures/
 *.tar.gz
+.DS_Store
