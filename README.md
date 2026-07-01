@@ -82,4 +82,4 @@ python3 ../make_paper.py
 
 Temkin, M. and Claude Sonnet 4.6 (Anthropic). (2025). Statistical Properties
 of the Voynich Manuscript: An Independent Computational Analysis.
-GitHub: github.com/yourname/voynich-analysis
+GitHub: github.com/mjtemkin/VoynichStats
