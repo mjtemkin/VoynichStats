@@ -12,8 +12,10 @@ statistical tests, generated code, and drafted the write-ups. All methodology
 was reviewed and approved by the human author.
 
 ## Paper
-See `SYNTHESIS.md` for the full research narrative, or the accompanying PDF
-for the typeset academic paper version.
+[voynich_statistical_analysis.pdf](voynich_statistical_analysis.pdf) — typeset
+academic-style writeup of all findings, with figures and references.
+
+Also see `SYNTHESIS.md` for the full research narrative.
 
 ## Data
 `raw_fsg.txt` -- the First Study Group transliteration by Jim Reeds (1994),
