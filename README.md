@@ -12,20 +12,16 @@ statistical tests, generated code, and drafted the write-ups. All methodology
 was reviewed and approved by the human author.
 
 ## Paper
-[voynich_statistical_analysis.pdf](voynich_statistical_analysis.pdf) — typeset
-academic-style writeup of all findings, with figures and references.
-
-See `FINDINGS_LOG.md` for the full internal research log (all findings,
-methodological notes, and data provenance documentation).
+See `SYNTHESIS.md` for the full research narrative, or the accompanying PDF
+for the typeset academic paper version.
 
 ## Data
 `raw_fsg.txt` -- the First Study Group transliteration by Jim Reeds (1994),
 from the William F. Friedman Collection, Marshall Library. Retrieved from
-voynich.nu. Public domain. Validated word-for-word against the authoritative
-source file.
+voynich.nu. Public domain.
 
 The alphabet used is the FSG alphabet (not identical to Currier's original
-alphabet despite historical references to both in the file comments).
+alphabet despite historical references to both in the comments).
 
 ## How to reproduce
 
@@ -33,8 +29,8 @@ No external dependencies are required for the analysis scripts (Python 3.8+
 only). Clone the repo and run from the project root:
 
 ```bash
-git clone https://github.com/mjtemkin/VoynichStats
-cd VoynichStats
+git clone https://github.com/yourname/voynich-analysis
+cd voynich-analysis
 
 # Main findings
 python3 repetition_test.py             # immediate word-doubling (~2x chance)
@@ -43,7 +39,6 @@ python3 word_class_asymmetry.py        # grammar-suggestive ordering structure
 # Significance tests (each takes 1-2 minutes)
 python3 confidence_check_v2_robust.py  # bootstrap for ordering asymmetry
 python3 section_gap_bootstrap.py       # permutation test for section gap
-python3 internal_doubling_bootstrap.py # CC-cluster decomposition of B doubling
 
 # Cross-language comparison
 cd compare && python3 run_stats.py     # entropy/TTR/compression table
@@ -53,8 +48,8 @@ For the figure and PDF generation (requires matplotlib and reportlab):
 
 ```bash
 pip install matplotlib reportlab
-python3 make_figures_v2.py
-python3 make_paper_v2.py
+python3 ../make_figures.py
+python3 ../make_paper.py
 ```
 
 ## Scripts (run from the project root directory)
@@ -72,21 +67,17 @@ python3 make_paper_v2.py
 - `confidence_check_v2_robust.py` -- frequency-matched bootstrap for asymmetry
 - `sparse_coding_v3.py` -- sparse dictionary learning on Voynichese
 - `substitution_test.py` -- formal simple substitution cipher test
-- `multilang_extended_test.py` -- Sanskrit Rigveda and Hebrew liturgy comparison
 - `compare/` -- comparison corpora (Culpeper English, Carmina Burana Latin,
-  Hebrew Genesis/Exodus/Psalms/Hallel, Arabic Al-Baqarah/Yusuf,
-  Sanskrit Rigveda) and matching scripts
+  Hebrew Genesis/Exodus/Psalms, Arabic Al-Baqarah/Yusuf) and matching scripts
 
-## Key findings (see FINDINGS_LOG.md for full detail)
+## Key findings (see SYNTHESIS.md for full detail)
 1. Immediate word-doubling at ~2x chance in both Currier languages, stationary
-   across the manuscript, surviving all genre and mechanism controls including
-   liturgical Hebrew poetry (z = -3.73, suppressed below chance) and Sanskrit
-   Vedic hymns.
+   across the manuscript, surviving all genre and mechanism controls.
 2. Word-class ordering asymmetry (grammar-suggestive positional structure),
    z > 4.7 in both languages, p < 0.0001, robust to frequency-matching control.
 
 ## Cite as
 
-Temkin, M. and Claude Sonnet 4.6 (Anthropic). (2026). Statistical Properties
+Temkin, M. and Claude Sonnet 4.6 (Anthropic). (2025). Statistical Properties
 of the Voynich Manuscript: An Independent Computational Analysis.
-GitHub: https://github.com/mjtemkin/VoynichStats
+GitHub: github.com/yourname/voynich-analysis

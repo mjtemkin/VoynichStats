@@ -514,3 +514,177 @@ across two different sample sizes. In every case, real language either shows
 zero immediate doubling (prose, Arabic) or suppressed-below-chance doubling
 (liturgy), never the systematic above-chance elevation that Voynichese shows
 consistently and stationarily across its full manuscript.
+
+---
+
+## Addendum 7: Sefer Yetzirah, Latin technical register, and the complete comparison table
+
+Two further corpora were tested following the Sanskrit and Hebrew liturgical
+analysis of Addendum 6.
+
+**Sefer Yetzirah** (Jewish Kabbalistic/mystical text, 1,699 words) is the most
+combinatorially-structured real Hebrew text known -- explicitly organized around
+permutations of letters and numerical combinations. Despite this, it shows
+entirely normal results: H1 = 3.782 (within the Hebrew range), compression
+1.152x (comparable to Genesis), and doubling suppressed below chance (0.48x,
+z = -1.25). The small sample means the z-score is not itself statistically
+significant, but the direction is consistent with every other real Hebrew sample.
+The mathematical/combinatorial register of Sefer Yetzirah does not produce
+Voynichese-like statistics.
+
+**Latin Vulgate narrative and Leviticus** (5,000 and 3,000 words from the
+complete Vulgate corpus, 534,301 words total) extend our Latin comparison into
+a new register: Leviticus is the most formulaic, procedural, and legally
+repetitive Latin in the Bible -- the closest real-language parallel to a
+recipe or procedure manual. It shows H1 = 3.410 and compression 1.160x
+(slightly higher than narrative Latin, as expected from formulaic repetition),
+and zero immediate doubling (z = -5.07, p = 1.000). Even the most
+procedure-manual-like real Latin maintains the real-language property of
+suppressed doubling.
+
+**The complete comparison table** across all 13 tested corpora now shows a
+completely consistent pattern: every real-language corpus (English, Latin,
+Hebrew narrative/liturgical/mystical, Arabic, Sanskrit) shows doubling
+at or below chance, regardless of genre, register, script type, or language
+family. Voynichese A and B show doubling consistently above chance in every
+section of the manuscript. No tested corpus bridges this gap from the
+real-language side.
+
+**On the mathematical framing of the null results:** the systematic pattern
+of nulls across all mechanism tests (marker words, line position, line length,
+grammatical suffix class, internal gemination, sequential statefulness, exact
+write-order dependence) collectively constrain the complexity of whatever
+process generated Voynichese. The right mathematical framing is minimum
+description length (MDL): what is the simplest generative model that
+simultaneously reproduces all observed statistics? A hierarchy of generators
+of increasing complexity has been partially explored (character Markov chain,
+bag-of-words, sticky bag-of-words, table/grille), with the sticky bag-of-words
+currently the best fit (matching H1, TTR, avglen, and doubling rate, but
+slightly over-shooting on TTR). The proposed next step is a Level 4 generator
+adding word-class ordering structure (a simple HMM where suffix-class
+transitions are learned from the asymmetric ordering signal), which would be
+the minimum sufficient model if it fits all five key statistics simultaneously.
+This represents a concrete, testable lower bound on the complexity of the
+Voynich manuscript's generating process.
+
+---
+
+## Addendum 8 (Final): The dual-constraint anomaly and the generator hierarchy
+
+The final phase of this project pursued two parallel threads: completing the
+generator hierarchy (finding the minimum-complexity model that reproduces all
+of Voynichese's statistics) and asking whether any known natural language could
+naturally produce Voynichese-like statistics. Both threads converged on the
+same answer, which we call the dual-constraint anomaly.
+
+**The generator hierarchy** was extended to Level 4 (HMM with word-class
+ordering transitions and stickiness) and Level 4.5 (adding temperature
+sampling to adjust vocabulary diversity). Level 4 was the first generator to
+reproduce the word-class ordering asymmetry signal, confirming that the learned
+transition matrix captures real structure. But neither level could close the
+TTR gap: vocabulary diversity remained 33-40% below the real Voynichese value
+regardless of parameter tuning. The conclusion is structural: no generator
+that draws from a fixed word pool can simultaneously achieve Voynichese's low
+conditional entropy AND its vocabulary diversity. The minimum additional
+complexity required is productive word formation -- the ability to generate
+novel word forms from reusable morpheme-like parts rather than resampling a
+fixed vocabulary. This is a specific, falsifiable claim about the nature of
+the generating process.
+
+**The cross-linguistic comparison** confirmed the same constraint from the
+other direction. Among all known natural languages (drawing on the 311-language
+Lindemann & Bowern corpus and our own 13-corpus test suite), low conditional
+entropy (H1 < 3.0) is found only in languages with severely restricted syllabic
+phonology: Hawaiian (H1=2.77), Venda (H1=2.79), Min Dong Chinese (H1=2.84).
+These languages achieve low entropy through phonological simplicity -- but as
+a consequence, their vocabulary diversity is limited. Agglutinative languages
+(Finnish H1=3.47, Turkish H1=3.55, Hungarian H1=3.74) have productive word
+formation and high vocabulary diversity, but their entropy is well above
+Voynichese. The two properties trade off in real language: every language sits
+on a curve, and Voynichese sits off the curve entirely.
+
+**The dual-constraint anomaly** is the unified statement of this finding:
+Voynichese simultaneously has low conditional entropy (implying restricted
+character-sequence templates) AND high vocabulary diversity (implying productive
+word formation). These are naturally anti-correlated in real language, and no
+known natural language occupies the region where Voynichese sits.
+
+**What this rules out and what it doesn't:** the finding rules out "ordinary
+text in an ordinary natural language" more precisely than the prior literature
+has stated. It does not rule out (a) a cipher that simplifies phonological
+distinctions many-to-one while preserving morphological vocabulary structure
+at the word level, or (b) an artificial language or constructed system with
+both a restricted glyph-assembly template (producing low entropy) and
+combinable word-part structure (producing vocabulary diversity). The Rugg
+table/grille class of hypotheses falls into category (b), though our earlier
+tests showed that simple table/grille generators overshoot the doubling rate
+by 3-19x.
+
+**The project's final position:** Voynichese is not ordinary natural language.
+It is not a simple cipher of natural language. It has real, grammar-like
+ordering structure. It has a specific, genre-proof, mechanism-resistant
+doubling anomaly. And it sits in a region of statistical space -- simultaneously
+low entropy and high vocabulary diversity -- that no known natural language
+occupies. These constraints do not resolve the hoax-vs-meaning question, but
+they characterize it with more precision than was previously available: whatever
+process generated Voynichese, it was not a simple one, and it was not a
+familiar one.
+
+---
+
+*This synthesis covers all 41 numbered findings across the full project
+(Updates 1-9+). The complete research log is in FINDINGS_LOG.md. All code
+and data are at https://github.com/mjtemkin/VoynichStats.*
+
+---
+
+## Future Work
+
+Several directions remain unexplored that could meaningfully extend this
+analysis, noted here for completeness rather than as unresolved gaps in the
+current findings.
+
+**Logographic and pictographic scripts.** The dual-constraint anomaly was
+established by comparing Voynichese against alphabetic and syllabic writing
+systems. Logographic-syllabic scripts -- Egyptian hieroglyphs and Classic
+Mayan -- represent a genuinely different structural class that has not been
+tested. At the glyph level (treating each glyph as a token rather than
+transliterating into phonemes), these scripts might produce word-level
+doubling rates and vocabulary distributions that are structurally closer to
+Voynichese's than any alphabetic language. This would require purpose-built
+glyph-sequence corpora: Mayan hieroglyphs are not yet in Unicode (as of
+2026), and the serious digital projects (TWKM, FAMSI) encode their material
+in specialist XML-TEI rather than plain text. Transliterating either script
+into phonemic romanization would lose the glyph-inventory structure that
+makes the comparison interesting, and would likely produce H1 values in the
+normal language range (3.2-3.8) reflecting the underlying spoken language
+rather than the script. This analysis is left for when accessible glyph-
+sequence corpora become available.
+
+**Agglutinative language corpora directly tested.** The dual-constraint
+analysis used H1 values from the Lindemann and Bowern (2020) 311-language
+Wikipedia corpus rather than running our own pipeline on Turkish, Finnish,
+or Hungarian text. Direct testing would allow us to measure all five key
+statistics (H1, TTR, compression, doubling rate, word-class asymmetry)
+simultaneously on agglutinative languages, rather than just H1. This would
+confirm whether agglutinative languages are as far from Voynichese on TTR
+and compression as they are on entropy, or whether they show partial overlap
+on some metrics.
+
+**Amidah and complete Shabbat siddur.** The Hebrew liturgical analysis used
+Psalms 113-150 and the complete Psalms as liturgical samples. The Amidah
+(the central standing prayer of every Jewish service, heavily formulaic in
+structure) was not accessible via the sandbox network. It represents a
+meaningfully different liturgical register -- declaratory rather than poetic
+-- and would be worth testing to confirm the Hebrew liturgical suppression
+result holds across all registers.
+
+**Productive word-formation generator (Level 5).** The generator hierarchy
+identified productive word formation as the missing ingredient in Level 4.5.
+A Level 5 generator would implement a slot-based word-formation model
+(following Stolfi's grammar framework) where words are assembled from
+combinable prefix, stem, and suffix slots rather than drawn from a fixed
+pool. This would directly test whether the dual-constraint anomaly is
+resolvable by a generator with morphology-like structure, and would provide
+a more precise lower bound on the complexity of the Voynichese generating
+process.
